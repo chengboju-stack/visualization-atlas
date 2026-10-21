@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>从数字到判断：DIKW 四层 · 可视化导论</title>
+<meta name="description" content="同一个数据，在四个层级上说的是完全不同的话。往下滚，看一份新生数据怎么一层层长出含义——以及每一层丢掉了什么。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1319'/%3E%3Cpath d='M7 24h18M7 24V8' stroke='%23e0574a' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M11 19l5-8 5 5 4-7' stroke='%23e0574a' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/lab.css">
+<link rel="stylesheet" href="../../assets/lab-kit.css">
+</head>
+<body class="page-lab">
+<header class="topbar course-topbar">
+  <a class="brand" href="../../">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V13M9.3 20V5M14.7 20v-6M20 20V9"/></svg></span>
+    <span class="brand-text"><b><span data-lang="zh-CN">可视化导论</span><span data-lang="en-US" hidden>Introduction to Visualization</span></b><i>Visualization Atlas</i></span>
+  </a>
+  <div class="top-actions"></div>
+</header>
+
+<main class="lab-wrap">
+  <a class="lab-back" href="../../lesson-01/#ch-1-2">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    <span data-lang="zh-CN">回到 1.2 数据定义（DIKW）</span><span data-lang="en-US" hidden>Back to 1.2 DIKW</span>
+  </a>
+
+  <h1 class="lab-title">
+    <span data-lang="zh-CN">从数字到判断：DIKW 四层</span>
+    <span data-lang="en-US" hidden>From numbers to judgement: DIKW</span>
+  </h1>
+  <p class="lab-lead">
+    <span data-lang="zh-CN">同一个数据，在四个层级上说的是完全不同的话。往下滚，看一份新生数据怎么一层层长出含义——以及每一层丢掉了什么。</span>
+    <span data-lang="en-US" hidden>The same data says different things at each level. Scroll to watch a freshman dataset gain meaning layer by layer — and notice what each layer throws away.</span>
+  </p>
+
+  <section class="scrolly" id="scrolly">
+    <ol class="steps">
+      <li class="step"><h3><span class="sn">01</span><span data-lang="zh-CN">Data 数据</span><span data-lang="en-US" hidden>Data</span></h3>
+        <p><span data-lang="zh-CN">原始记录：一行一个学生，一列一个字段，没有任何解释。</span><span data-lang="en-US" hidden>Raw records: one row per student, one column per field, no interpretation.</span></p></li>
+      <li class="step"><h3><span class="sn">02</span><span data-lang="zh-CN">Information 信息</span><span data-lang="en-US" hidden>Information</span></h3>
+        <p><span data-lang="zh-CN">加上单位、口径和聚合，数字才成为可读的陈述：「平均年龄 17.8 岁」。</span><span data-lang="en-US" hidden>Add units, definitions and aggregation and numbers become statements: "mean age 17.8".</span></p></li>
+      <li class="step"><h3><span class="sn">03</span><span data-lang="zh-CN">Knowledge 知识</span><span data-lang="en-US" hidden>Knowledge</span></h3>
+        <p><span data-lang="zh-CN">把多条信息连起来形成可复用的规律：「年龄集中在 17–18 岁，因为这是大一」。这是关于世界的主张，可以被反驳。</span><span data-lang="en-US" hidden>Connect statements into a reusable pattern: "ages cluster at 17–18 because these are first-year students". This is a claim about the world, and it can be challenged.</span></p></li>
+      <li class="step"><h3><span class="sn">04</span><span data-lang="zh-CN">Wisdom 智慧</span><span data-lang="en-US" hidden>Wisdom</span></h3>
+        <p><span data-lang="zh-CN">知道该不该用这条规律、用在什么边界内：「这份数据是合成数据，不能用来推断真实人口结构」。图表只能承载前两层，后两层要靠人和标注。</span><span data-lang="en-US" hidden>Knowing whether to act on the pattern, and within what limits: "this dataset is synthetic, so it cannot support claims about the real population." Charts carry the first two layers; the last two need people and annotation.</span></p></li>
+    </ol>
+    <div class="stage">
+      <div class="stage-cap"><span><b id="cap-layer">Data</b></span><span id="cap-note"></span></div>
+      <svg id="stage" viewBox="0 0 460 400"></svg>
+      <div class="readout">
+        <div><span data-lang="zh-CN">这一层看到</span><span data-lang="en-US" hidden>you see</span><b id="cap-see">—</b></div>
+        <div><span data-lang="zh-CN">丢掉了</span><span data-lang="en-US" hidden>lost</span><b id="cap-lost">—</b></div>
+      </div>
+    </div>
+  </section>
+  <div class="lab-foot">
+    <a href="../"><span data-lang="zh-CN">全部实验台</span><span data-lang="en-US" hidden>All labs</span></a>
+    <a href="../../lesson-01/#ch-1-2"><span data-lang="zh-CN">回到 1.2 数据定义（DIKW）</span><span data-lang="en-US" hidden>Back to 1.2 DIKW</span></a>
+  </div>
+</main>
+
+<script src="../../assets/anim.js"></script>
+<script src="../../assets/lab-kit.js"></script>
+<script src="../../assets/lab-dikw.js"></script>
+<script type="module" src="../../i18n.js"></script>
+</body>
+</html>

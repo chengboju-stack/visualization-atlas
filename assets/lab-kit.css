@@ -1,0 +1,141 @@
+/* ==========================================================================
+   lab-kit.css · 实验台通用构件
+   两种版式：
+     A) 滚动叙事 .scrolly —— 左侧文字步骤，右侧 sticky 图形舞台
+     B) 控制台式 .console —— 上方图形，下方参数与说明
+   ========================================================================== */
+
+/* ---------------------------- A. 滚动叙事 ---------------------------- */
+.scrolly {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
+  gap: var(--s7);
+  align-items: start;
+  margin: var(--s6) 0;
+}
+.scrolly .steps { margin: 0; padding: 0; list-style: none; }
+.scrolly .step {
+  min-height: 46vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: var(--s5) var(--s5) var(--s5) 0;
+  opacity: .32;
+  transition: opacity .35s ease, transform .35s ease;
+  transform: translateY(6px);
+}
+.scrolly .step.is-active { opacity: 1; transform: none; }
+.scrolly .step h3 {
+  font-size: var(--t-lg); margin: 0 0 var(--s2);
+  display: flex; align-items: baseline; gap: 10px;
+}
+.scrolly .step h3 .sn {
+  font-family: var(--f-mono); font-size: 11px; color: var(--accent);
+  letter-spacing: .1em; flex: none;
+}
+.scrolly .step p { margin: 0; color: var(--ink-3); font-size: var(--t-md); line-height: 1.78; max-width: 46ch; }
+.scrolly .step p + p { margin-top: 8px; }
+.scrolly .step code {
+  font-family: var(--f-mono); font-size: .88em;
+  background: var(--bg-3); padding: 1px 5px; border-radius: 3px; color: var(--accent-2-ink);
+}
+
+.scrolly .stage {
+  position: sticky;
+  top: calc(var(--topbar-h) + var(--s5));
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--bg-1);
+  padding: var(--s4);
+  min-height: 380px;
+  display: flex; flex-direction: column;
+  gap: var(--s3);
+}
+.scrolly .stage svg { width: 100%; height: auto; display: block; }
+.stage-cap {
+  margin-top: auto;
+  font-family: var(--f-mono); font-size: 11px; color: var(--ink-4);
+  letter-spacing: .04em;
+  display: flex; justify-content: space-between; gap: 10px;
+}
+.stage-cap b { color: var(--accent); font-weight: 600; }
+
+/* ---------------------------- B. 控制台 ---------------------------- */
+.console-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--s4);
+  align-items: start;
+}
+.console-stage {
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--bg-1); padding: var(--s4);
+  min-height: 320px;
+}
+.console-stage svg { width: 100%; height: auto; display: block; }
+.console-panel {
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--bg-2); padding: var(--s4);
+  display: flex; flex-direction: column; gap: var(--s3);
+}
+.console-panel h4 {
+  margin: 0; font-family: var(--f-mono); font-size: 10.5px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-4);
+}
+.ctl { display: flex; flex-direction: column; gap: 6px; }
+.ctl > label {
+  font-size: 12px; color: var(--ink-3);
+  display: flex; justify-content: space-between; gap: 10px;
+}
+.ctl > label b { font-family: var(--f-mono); color: var(--accent); font-weight: 600; }
+.ctl input[type="range"] { width: 100%; accent-color: var(--accent); }
+.ctl select, .ctl input[type="number"], .ctl input[type="text"] {
+  font: 12.5px var(--f-mono); color: var(--ink); background: var(--bg-1);
+  border: 1px solid var(--line-2); border-radius: 6px; padding: 6px 8px;
+}
+.ctl-row { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.btn {
+  appearance: none; cursor: pointer;
+  font: 600 12.5px var(--f-sans);
+  color: var(--ink); background: var(--bg-3);
+  border: 1px solid var(--line-2); border-radius: 7px;
+  padding: 7px 13px;
+  transition: background .15s, border-color .15s, color .15s, transform .12s;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-soft); }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { background: color-mix(in srgb, var(--accent) 85%, #000); color: #fff; }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* 时间轴 / 步进器 */
+.timeline { display: flex; align-items: center; gap: 8px; }
+.timeline input[type="range"] { flex: 1; accent-color: var(--accent); }
+.timeline .tl-n { font-family: var(--f-mono); font-size: 11px; color: var(--ink-4); min-width: 4.5em; text-align: right; }
+
+/* 图例与读值 */
+.readout {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: 8px;
+  padding-top: var(--s3); border-top: 1px solid var(--line);
+}
+.readout div { display: flex; flex-direction: column; gap: 2px; }
+.readout span { font-size: 10.5px; color: var(--ink-4); font-family: var(--f-mono); letter-spacing: .06em; text-transform: uppercase; }
+.readout b { font-family: var(--f-mono); font-size: 14px; color: var(--ink); font-weight: 600; }
+
+/* 注释标注 */
+.anno { fill: var(--accent-ink); font: 600 11px var(--f-sans); }
+.anno-line { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3 3; opacity: .7; }
+
+/* 通用图形元素 */
+.ax { stroke: var(--line-2); stroke-width: 1; }
+.ax-t { fill: var(--ink-4); font: 10.5px var(--f-mono); }
+.grid-l { stroke: var(--line); stroke-width: 1; }
+
+@media (max-width: 980px) {
+  .scrolly { grid-template-columns: 1fr; gap: var(--s4); }
+  .scrolly .stage { position: sticky; top: var(--topbar-h); z-index: 20; order: -1; min-height: 300px; }
+  .scrolly .steps { display: flex; flex-direction: column; }
+  .scrolly .step { min-height: auto; padding: var(--s4) 0; opacity: .45; }
+  .scrolly .step.is-active { opacity: 1; }
+  .console-grid { grid-template-columns: 1fr; }
+}

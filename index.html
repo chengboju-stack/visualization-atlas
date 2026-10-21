@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>可视化导论 · 知识图谱与章节</title>
+<meta name="description" content="《可视化导论》课程门户：五章知识地图、图表选型器与 27 节交互讲义。JavaScript + D3.js，从数据到图表。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1319'/%3E%3Cpath d='M8 22V14M14 22V9M20 22v-6M26 22v-9' stroke='%23e0574a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/home.css">
+</head>
+<body class="page-home">
+<a class="skip" href="#map"><span data-lang="zh-CN">跳到知识地图</span><span data-lang="en-US" hidden>Skip to the map</span></a>
+
+<header class="topbar course-topbar">
+  <a class="brand" href="./">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V13M9.3 20V5M14.7 20v-6M20 20V9"/></svg>
+    </span>
+    <span class="brand-text"><b><span data-lang="zh-CN">可视化导论</span><span data-lang="en-US" hidden>Introduction to Visualization</span></b><i>Visualization Atlas</i></span>
+  </a>
+  <nav class="spines" aria-label="章节导航">
+    <a class="spine" href="lesson-01/"><b>01</b><span data-lang="zh-CN">数据</span><span data-lang="en-US" hidden>Data</span></a>
+    <a class="spine" href="lesson-02/"><b>02</b><span data-lang="zh-CN">可视化流程</span><span data-lang="en-US" hidden>Process</span></a>
+    <a class="spine" href="lesson-03/"><b>03</b><span data-lang="zh-CN">色彩专题</span><span data-lang="en-US" hidden>Color</span></a>
+    <a class="spine" href="lesson-04/"><b>04</b><span data-lang="zh-CN">低维可视化</span><span data-lang="en-US" hidden>Low-Dim</span></a>
+    <a class="spine" href="lesson-05/"><b>05</b><span data-lang="zh-CN">时序可视化</span><span data-lang="en-US" hidden>Time</span></a>
+  </nav>
+  <div class="top-actions">
+    <a class="icon-btn" href="#labs" aria-label="概念实验室" title="概念实验室">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19v-4"/></svg>
+    </a>
+    <button class="icon-btn" id="theme-btn" type="button" aria-label="切换深浅色" title="切换深浅色">
+      <svg class="ic-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- ================= 首屏 ================= -->
+  <section class="hero">
+    <p class="hero-kicker">
+      <span data-lang="zh-CN">中国石油大学（华东）· 可视化导论</span>
+      <span data-lang="en-US" hidden>China University of Petroleum (East China) · Introduction to Visualization</span>
+    </p>
+    <h1>
+      <span data-lang="zh-CN">先看地图，<br><em>再进章节。</em></span>
+      <span data-lang="en-US" hidden>Read the map first,<br><em>then the chapters.</em></span>
+    </h1>
+    <p class="hero-lead">
+      <span data-lang="zh-CN">这门课不是把图表类型挨个背一遍，而是回答一个问题：<strong>面对一份数据，我该怎么把它变成看得懂的东西。</strong>下面这张图是五章之间的关系——从数据本身，到处理流程，到颜色这个基础通道，再到低维与时间两类图形。</span>
+      <span data-lang="en-US" hidden>This course does not ask you to memorise chart names. It answers one question: <strong>given a dataset, how do I turn it into something readable?</strong> The map below shows how the five chapters relate — from the data itself, through the pipeline, to colour as a base channel, and on to low-dimensional and temporal graphics.</span>
+    </p>
+    <div class="hero-stats">
+      <div><b>5</b><span data-lang="zh-CN">章</span><span data-lang="en-US" hidden>chapters</span></div>
+      <div><b>27</b><span data-lang="zh-CN">节</span><span data-lang="en-US" hidden>sections</span></div>
+      <div><b>27</b><span data-lang="zh-CN">个可运行演示</span><span data-lang="en-US" hidden>live demos</span></div>
+      <div><b>0</b><span data-lang="zh-CN">个外部依赖</span><span data-lang="en-US" hidden>external requests</span></div>
+    </div>
+    <a class="hero-cta" href="#map">
+      <span data-lang="zh-CN">从知识地图开始</span><span data-lang="en-US" hidden>Start from the map</span>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- ================= 知识地图 ================= -->
+  <section class="map-section" id="map">
+    <div class="sec-head">
+      <p class="sec-kicker">KNOWLEDGE MAP</p>
+      <h2><span data-lang="zh-CN">五章之间的关系</span><span data-lang="en-US" hidden>How the five chapters connect</span></h2>
+      <p class="sec-sub">
+        <span data-lang="zh-CN">箭头表示「前置 → 后续」。把鼠标放到某一章上，只保留和它有关的连线；点进去就开始读。</span>
+        <span data-lang="en-US" hidden>Arrows mean "prerequisite → follow-up". Hover a chapter to isolate its connections; click to start reading.</span>
+      </p>
+    </div>
+
+    <div class="map-wrap" id="map-wrap">
+      <svg class="map-edges" id="map-edges" aria-hidden="true"></svg>
+      <ol class="map-nodes" id="map-nodes">
+        <li class="map-node" data-ch="1" data-deps="2,4">
+          <a href="lesson-01/">
+            <span class="mn-top"><b>01</b><i data-lang="zh-CN">基础</i><i data-lang="en-US" hidden>base</i></span>
+            <strong data-lang="zh-CN">数据</strong><strong data-lang="en-US" hidden>Data</strong>
+            <span class="mn-desc" data-lang="zh-CN">数据是什么、有哪些属性、怎么变换</span>
+            <span class="mn-desc" data-lang="en-US" hidden>What data is, its properties, how to transform it</span>
+            <span class="mn-chips">
+              <i>DIKW</i><i>Stevens</i><i>Data-Join</i>
+            </span>
+          </a>
+        </li>
+        <li class="map-node" data-ch="2" data-deps="4">
+          <a href="lesson-02/">
+            <span class="mn-top"><b>02</b><i data-lang="zh-CN">流程</i><i data-lang="en-US" hidden>pipeline</i></span>
+            <strong data-lang="zh-CN">可视化流程</strong><strong data-lang="en-US" hidden>Pipeline</strong>
+            <span class="mn-desc" data-lang="zh-CN">从原始数据到屏幕像素，中间发生了什么</span>
+            <span class="mn-desc" data-lang="en-US" hidden>What happens between raw data and screen pixels</span>
+            <span class="mn-chips"><i>Card</i><i>rollup</i><i>tree</i><i>events</i></span>
+          </a>
+        </li>
+        <li class="map-node" data-ch="3" data-deps="4,5">
+          <a href="lesson-03/">
+            <span class="mn-top"><b>03</b><i data-lang="zh-CN">专题</i><i data-lang="en-US" hidden>topic</i></span>
+            <strong data-lang="zh-CN">色彩</strong><strong data-lang="en-US" hidden>Color</strong>
+            <span class="mn-desc" data-lang="zh-CN">颜色是最强的视觉通道，也最容易用错</span>
+            <span class="mn-desc" data-lang="en-US" hidden>The strongest visual channel, and the easiest to misuse</span>
+            <span class="mn-chips"><i>Lab</i><i>colormap</i><i>CVD</i></span>
+          </a>
+        </li>
+        <li class="map-node" data-ch="4" data-deps="5">
+          <a href="lesson-04/">
+            <span class="mn-top"><b>04</b><i data-lang="zh-CN">图形</i><i data-lang="en-US" hidden>charts</i></span>
+            <strong data-lang="zh-CN">低维数据可视化</strong><strong data-lang="en-US" hidden>Low-dimensional</strong>
+            <span class="mn-desc" data-lang="zh-CN">两个变量的关系：变换、拟合、倾角、等值线</span>
+            <span class="mn-desc" data-lang="en-US" hidden>Relationships between two variables: transforms, fits, angle, contours</span>
+            <span class="mn-chips"><i>45°</i><i>fit</i><i>Marching Squares</i></span>
+          </a>
+        </li>
+        <li class="map-node" data-ch="5">
+          <a href="lesson-05/">
+            <span class="mn-top"><b>05</b><i data-lang="zh-CN">时间</i><i data-lang="en-US" hidden>time</i></span>
+            <strong data-lang="zh-CN">时序数据可视化</strong><strong data-lang="en-US" hidden>Time series</strong>
+            <span class="mn-desc" data-lang="zh-CN">时间有五种属性，没有一种图能同时表达</span>
+            <span class="mn-desc" data-lang="en-US" hidden>Time has five properties; no single chart shows them all</span>
+            <span class="mn-chips"><i>calendar</i><i>spiral</i><i>Storyline</i></span>
+          </a>
+        </li>
+      </ol>
+    </div>
+
+    <div class="map-legend">
+      <span><i class="lg-line"></i><span data-lang="zh-CN">前置关系</span><span data-lang="en-US" hidden>prerequisite</span></span>
+      <span><i class="lg-chip"></i><span data-lang="zh-CN">该章关键概念</span><span data-lang="en-US" hidden>key concepts</span></span>
+    </div>
+  </section>
+
+  <!-- ================= 图表选型器 ================= -->
+  <section class="chooser-section" id="chooser">
+    <div class="sec-head">
+      <p class="sec-kicker">CHART CHOOSER</p>
+      <h2><span data-lang="zh-CN">我要表达的是哪种关系？</span><span data-lang="en-US" hidden>Which relationship am I showing?</span></h2>
+      <p class="sec-sub">
+        <span data-lang="zh-CN">选图不是选好看的形状，而是先认清数据关系。这张分类参考 FT Visual Vocabulary 的九类关系，点开任一类看它对应的图形、适用场景和常见误用。</span>
+        <span data-lang="en-US" hidden>Choosing a chart starts with naming the relationship. These nine categories follow the FT Visual Vocabulary; open one to see matching charts, when to use them, and common mistakes.</span>
+      </p>
+    </div>
+
+    <div class="chooser" id="chooser-grid"></div>
+    <div class="chooser-detail" id="chooser-detail" hidden></div>
+  </section>
+
+  <!-- ================= 概念实验室 ================= -->
+  <section class="labs-section" id="labs">
+    <div class="sec-head">
+      <p class="sec-kicker">CONCEPT LABS</p>
+      <h2><span data-lang="zh-CN">九个可以动手的实验</span><span data-lang="en-US" hidden>Nine hands-on labs</span></h2>
+      <p class="sec-sub">
+        <span data-lang="zh-CN">有些概念读十遍定义，不如自己调一次参数。九个实验台，每个只讲一件事。</span>
+        <span data-lang="en-US" hidden>Some ideas only click once you turn a knob. Nine labs, each making exactly one point.</span>
+      </p>
+    </div>
+    <div class="lab-cards">
+      <a class="lab-card" href="lab/datajoin/">
+        <span class="lc-tag">A</span>
+        <h3><span data-lang="zh-CN">Data-Join 三态</span><span data-lang="en-US" hidden>Data-join states</span></h3>
+        <p><span data-lang="zh-CN">改数组，看 enter / update / exit 怎么在同一个图里发生。</span><span data-lang="en-US" hidden>Edit the array and watch enter / update / exit happen in one chart.</span></p>
+        <span class="lc-go"><span data-lang="zh-CN">开始实验</span><span data-lang="en-US" hidden>Open the lab</span> →</span>
+      </a>
+      <a class="lab-card" href="lab/marching/">
+        <span class="lc-tag">B</span>
+        <h3><span data-lang="zh-CN">Marching Squares</span><span data-lang="en-US" hidden>Marching Squares</span></h3>
+        <p><span data-lang="zh-CN">逐格判定 16 种情形，一格一格走出等值线。</span><span data-lang="en-US" hidden>Sixteen cases per cell, one cell at a time.</span></p>
+        <span class="lc-go"><span data-lang="zh-CN">开始实验</span><span data-lang="en-US" hidden>Open the lab</span> →</span>
+      </a>
+      <a class="lab-card" href="lab/cvd/">
+        <span class="lc-tag">C</span>
+        <h3><span data-lang="zh-CN">色盲模拟器</span><span data-lang="en-US" hidden>Colour-blind simulator</span></h3>
+        <p><span data-lang="zh-CN">看同一套配色在三种色觉缺陷下怎么塌掉，再换成能通过的色板。</span><span data-lang="en-US" hidden>Watch a palette collapse under three deficiencies, then swap in one that survives.</span></p>
+        <span class="lc-go"><span data-lang="zh-CN">开始实验</span><span data-lang="en-US" hidden>Open the lab</span> →</span>
+      </a>
+      <a class="lab-card" href="lab/calendar/">
+        <span class="lc-tag">D</span>
+        <h3><span data-lang="zh-CN">日历热图</span><span data-lang="en-US" hidden>Calendar heatmap</span></h3>
+        <p><span data-lang="zh-CN">365 天折叠成 7×53，框选一段，下方趋势线同步高亮。</span><span data-lang="en-US" hidden>365 days on a 7×53 grid; brush a window and the trend line follows.</span></p>
+        <span class="lc-go"><span data-lang="zh-CN">开始实验</span><span data-lang="en-US" hidden>Open the lab</span> →</span>
+      </a>
+    </div>
+    <p style="margin-top:var(--s4)">
+      <a class="cd-go" href="lab/" style="font-size:var(--t-sm)">
+        <span data-lang="zh-CN">全部 9 个实验台</span><span data-lang="en-US" hidden>All nine labs</span> →
+      </a>
+    </p>
+  </section>
+
+  <!-- ================= 章节 ================= -->
+  <section class="chapters-section" id="chapters">
+    <div class="sec-head">
+      <p class="sec-kicker">CHAPTERS</p>
+      <h2><span data-lang="zh-CN">五个章节</span><span data-lang="en-US" hidden>Five chapters</span></h2>
+      <p class="sec-sub">
+        <span data-lang="zh-CN">每节都按「案例 → 理论 → 代码 → 演示」四层组织：先看真实问题，再看它背后的框架，然后读实现，最后自己动手。</span>
+        <span data-lang="en-US" hidden>Each section is organised in four layers: case → theory → code → demo. See the real problem, the framework behind it, the implementation, then try it yourself.</span>
+      </p>
+    </div>
+
+    <ol class="chapter-list">
+      <li>
+        <a class="chap-card" href="lesson-01/">
+          <span class="cc-num">01</span>
+          <div class="cc-main">
+            <h3><span data-lang="zh-CN">数据</span><span data-lang="en-US" hidden>Data</span></h3>
+            <p><span data-lang="zh-CN">从一份合成的新生数据出发：数据是什么、分几类、能做什么运算，以及 D3 怎么把数据变成 DOM。</span><span data-lang="en-US" hidden>Starting from a synthetic freshman dataset: what data is, how it is typed, what operations it allows, and how D3 binds it to the DOM.</span></p>
+            <span class="cc-meta">5 <span data-lang="zh-CN">节</span><span data-lang="en-US" hidden>sections</span> · DIKW · Stevens · Data-Join</span>
+          </div>
+          <span class="cc-go" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="chap-card" href="lesson-02/">
+          <span class="cc-num">02</span>
+          <div class="cc-main">
+            <h3><span data-lang="zh-CN">数据可视化流程</span><span data-lang="en-US" hidden>Visualization Pipeline</span></h3>
+            <p><span data-lang="zh-CN">数据 → 变换 → 映射 → 渲染 → 交互。用一棵分类树走完整条链路，并实现 Reingold-Tilford 树布局与可折叠列表。</span><span data-lang="en-US" hidden>Data → transform → map → render → interact. Walk the whole chain with a classification tree, then implement Reingold–Tilford layout and a collapsible list.</span></p>
+            <span class="cc-meta">4 <span data-lang="zh-CN">节</span><span data-lang="en-US" hidden>sections</span> · Card · rollup · events</span>
+          </div>
+          <span class="cc-go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </li>
+      <li>
+        <a class="chap-card" href="lesson-03/">
+          <span class="cc-num">03</span>
+          <div class="cc-main">
+            <h3><span data-lang="zh-CN">色彩专题</span><span data-lang="en-US" hidden>Color</span></h3>
+            <p><span data-lang="zh-CN">颜色空间、colormap 三族、Lab 色域、色盲模拟与科研经典配色。附一个能验证任意配色是否色盲友好的模拟器。</span><span data-lang="en-US" hidden>Color spaces, three colormap families, Lab gamut, CVD simulation and research-grade palettes — plus a simulator that checks any palette.</span></p>
+            <span class="cc-meta">8 <span data-lang="zh-CN">节</span><span data-lang="en-US" hidden>sections</span> · Lab · CVD · Okabe–Ito</span>
+          </div>
+          <span class="cc-go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </li>
+      <li>
+        <a class="chap-card" href="lesson-04/">
+          <span class="cc-num">04</span>
+          <div class="cc-main">
+            <h3><span data-lang="zh-CN">低维数据可视化</span><span data-lang="en-US" hidden>Low-dimensional Data</span></h3>
+            <p><span data-lang="zh-CN">两个变量能玩出多少花样：坐标变换、十种曲线拟合、Cleveland 45° 倾角感知、Marching Squares 等值线。</span><span data-lang="en-US" hidden>What two variables can show: coordinate transforms, ten curve fits, Cleveland's 45° angle, and Marching Squares contours.</span></p>
+            <span class="cc-meta">5 <span data-lang="zh-CN">节</span><span data-lang="en-US" hidden>sections</span> · 45° · fit · contours</span>
+          </div>
+          <span class="cc-go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </li>
+      <li>
+        <a class="chap-card" href="lesson-05/">
+          <span class="cc-num">05</span>
+          <div class="cc-main">
+            <h3><span data-lang="zh-CN">时序数据可视化</span><span data-lang="en-US" hidden>Time Series</span></h3>
+            <p><span data-lang="zh-CN">时间的五种属性与五种图形：折线、van Wijk 日历热图、阿基米德螺旋、Storyline 故事线。</span><span data-lang="en-US" hidden>Five properties of time across five charts: line, van Wijk calendar heatmap, Archimedean spiral, and Storyline.</span></p>
+            <span class="cc-meta">5 <span data-lang="zh-CN">节</span><span data-lang="en-US" hidden>sections</span> · calendar · spiral · Storyline</span>
+          </div>
+          <span class="cc-go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ================= 怎么用 ================= -->
+  <section class="how-section">
+    <div class="sec-head">
+      <p class="sec-kicker">HOW TO USE</p>
+      <h2><span data-lang="zh-CN">三种读法</span><span data-lang="en-US" hidden>Three ways to read</span></h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <span class="how-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>
+        <h3><span data-lang="zh-CN">沿着地图读</span><span data-lang="en-US" hidden>Follow the map</span></h3>
+        <p><span data-lang="zh-CN">从 01 开始按顺序走。每一节先读「案例」，再看「理论」，最后点开「演示」自己改参数。</span><span data-lang="en-US" hidden>Start at 01 and go in order. Read the case, then the theory, then open the demo and change the parameters yourself.</span></p>
+      </div>
+      <div class="how-card">
+        <span class="how-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span>
+        <h3><span data-lang="zh-CN">带着问题查</span><span data-lang="en-US" hidden>Look it up</span></h3>
+        <p><span data-lang="zh-CN">先在上面的选型器里找到「我要表达什么关系」，再跳到对应章节，而不是从头翻。</span><span data-lang="en-US" hidden>Find your relationship in the chooser above, then jump to the matching chapter instead of scrolling from the start.</span></p>
+      </div>
+      <div class="how-card">
+        <span class="how-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 5v14l11-7z"/></svg></span>
+        <h3><span data-lang="zh-CN">直接动手</span><span data-lang="en-US" hidden>Go hands-on</span></h3>
+        <p><span data-lang="zh-CN">每节的「演示」都是真实运行的代码，不是录屏。改一个参数、看图形怎么变，比读十遍定义有用。</span><span data-lang="en-US" hidden>Every demo is live code, not a recording. Change one parameter and watch the chart respond — worth ten readings of a definition.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="credits">
+    <p>
+      <span data-lang="zh-CN">课程内容整理自李昕老师《可视化导论》讲义（中国石油大学·华东），参考陈为《可视化导论》、Mackinlay 1986、Stevens 1946、Cleveland 1984、Card 1999 数据流模型、Bostock 的 D3 文档。图表选型分类参考 Financial Times Visual Vocabulary。</span>
+      <span data-lang="en-US" hidden>Course content adapted from Prof. Li Xin's Introduction to Visualization (China University of Petroleum, East China), drawing on Chen Wei's textbook, Mackinlay 1986, Stevens 1946, Cleveland 1984, Card 1999, and Bostock's D3 documentation. The chart taxonomy follows the Financial Times Visual Vocabulary.</span>
+    </p>
+    <p class="credits-sub">
+      <span data-lang="zh-CN">学生重构作品 · 纯静态 · 零外部请求 · 可离线运行</span>
+      <span data-lang="en-US" hidden>Student refactor · static · zero external requests · works offline</span>
+    </p>
+  </section>
+</main>
+
+<script src="assets/home.js"></script>
+<script src="assets/anim.js"></script>
+<script type="module" src="i18n.js"></script>
+</body>
+</html>

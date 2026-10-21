@@ -1,0 +1,269 @@
+/* ==========================================================================
+   components.css · 小节头、标签页、内容分层卡片、演示面板、翻页
+   ========================================================================== */
+
+/* ---------------------------- 小节头 ---------------------------- */
+.chapter { animation: secIn .34s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes secIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.chapter > h2 {
+  display: flex; align-items: flex-start; gap: var(--s3);
+  margin: 0 0 var(--s2);
+  font-size: var(--t-2xl); font-weight: 680; letter-spacing: -.02em;
+  flex-wrap: wrap;
+}
+.sec-num {
+  font-family: var(--f-mono); font-size: 14px; font-weight: 600;
+  color: var(--accent); letter-spacing: .04em;
+  padding: 5px 9px; border-radius: var(--r-sm);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  flex: none; margin-top: 4px;
+}
+.sec-name { flex: 1 1 auto; min-width: 0; }
+
+.chapter-subtitle {
+  margin: 0 0 var(--s5);
+  color: var(--ink-3); font-size: var(--t-md); line-height: 1.7;
+  max-width: 68ch;
+  padding-left: calc(14px + 9px + var(--s3));  /* 与标题文字对齐 */
+}
+[data-lang="zh-CN"].chapter-subtitle,
+[data-lang="en-US"].chapter-subtitle { padding-left: calc(14px + 9px + var(--s3)); }
+
+/* 小节头的元信息行 */
+.sec-meta {
+  display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  margin: 0 0 var(--s4); padding-left: calc(14px + 9px + var(--s3));
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 999px;
+  font-size: 11.5px; font-family: var(--f-mono); letter-spacing: .02em;
+  border: 1px solid var(--line-2); color: var(--ink-3);
+  background: var(--bg-1);
+}
+.chip i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.chip.theory { color: var(--accent-2-ink); border-color: color-mix(in srgb, var(--accent-2) 40%, transparent); }
+.chip.patch { color: var(--ink-4); border-style: dashed; }
+.chip.demo { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 40%, transparent); }
+.chip.keys { color: var(--ink-2); }
+
+/* ---------------------------- 标签页 ---------------------------- */
+.tabs {
+  display: flex; gap: 2px; align-items: center;
+  padding: 4px; margin: 0 0 var(--s4);
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--bg-1);
+  width: fit-content;
+  position: sticky; top: calc(var(--topbar-h) + 10px); z-index: 20;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-1);
+}
+.tab-btn {
+  appearance: none; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: 8px;
+  font: 600 13.5px var(--f-sans); color: var(--ink-3);
+  background: transparent;
+  transition: color .16s, background .16s;
+}
+.tab-btn:hover { color: var(--ink); background: var(--bg-2); }
+.tab-btn.active {
+  color: #fff; background: var(--accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+.tab-btn .tb-n { font-family: var(--f-mono); font-size: 10.5px; opacity: .7; }
+.tab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.tab-panels { position: relative; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: panelIn .26s ease both; }
+@keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------------------------- 内容分层卡片 ---------------------------- */
+/* 运行时由 shell.js 按 h3 标记把「案例 / 理论 / 补丁」切成独立块 */
+.blk {
+  max-width: 920px;   /* 卡片与正文同宽收口，避免右侧大片空白 */
+  position: relative;
+  margin: 0 0 var(--s5);
+  padding: var(--s4) var(--s5) var(--s4) var(--s5);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--bg-1);
+}
+.blk + .blk { margin-top: calc(var(--s5) * -.4); }
+.blk:last-child { margin-bottom: 0; }
+
+.blk-head {
+  display: flex; align-items: center; gap: 8px;
+  margin: 0 0 var(--s3);
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.blk-head .bh-label { font-weight: 650; }
+.blk-head .bh-rule { flex: 1; height: 1px; background: currentColor; opacity: .18; }
+
+/* 案例：朱砂竖线，白底 */
+.blk--case { border-left: 3px solid var(--accent); }
+.blk--case .blk-head { color: var(--accent); }
+
+/* 理论：青灰底色，明确「这是框架，不是案例」 */
+.blk--theory {
+  border-left: 3px solid var(--accent-2);
+  background: color-mix(in srgb, var(--accent-2) 5%, var(--bg-1));
+}
+.blk--theory .blk-head { color: var(--accent-2-ink); }
+
+/* 补丁：虚线、灰、可折叠 → 明确标为「扩展」 */
+.blk--patch {
+  border: 1px dashed var(--line-2);
+  background: transparent;
+  padding: 0;
+}
+.blk--patch > summary {
+  cursor: pointer; list-style: none;
+  display: flex; align-items: center; gap: 8px;
+  padding: var(--s3) var(--s5);
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .16em;
+  color: var(--ink-4); text-transform: uppercase;
+}
+.blk--patch > summary::-webkit-details-marker { display: none; }
+.blk--patch > summary::after {
+  content: '+'; margin-left: auto; font-size: 15px; line-height: 1;
+  font-family: var(--f-mono); color: var(--ink-4);
+}
+.blk--patch[open] > summary::after { content: '−'; }
+.blk--patch > summary:hover { color: var(--ink-2); }
+.blk--patch .patch-body { padding: 0 var(--s5) var(--s4); }
+
+
+/* 块内第一个 h3 就是「案例 / 理论」的块标题，压小、加字距，与正文区分 */
+.blk > h3:first-child {
+  margin: 0 0 var(--s3) !important;
+  font-family: var(--f-mono);
+  font-size: 10.5px !important;
+  font-weight: 650 !important;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--accent);
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.blk--theory > h3:first-child {
+  color: var(--accent-2-ink);
+  border-bottom-color: color-mix(in srgb, var(--accent-2) 24%, transparent);
+}
+.blk--patch .patch-body > h3:first-child {
+  margin-top: 0 !important;
+  font-size: 12px !important;
+  letter-spacing: .08em;
+  text-transform: none;
+  color: var(--ink-3);
+  border-bottom: 0;
+}
+/* 块与块之间收紧一点，避免满屏大间距 */
+.blk + .blk { margin-top: var(--s4); }
+
+/* 关键点（原 .key-point）在块里做强调条 */
+.key-point { margin: var(--s4) 0 0; }
+
+/* ---------------------------- 代码卡 ---------------------------- */
+.code-card {
+  margin: 0 0 var(--s5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-1);
+}
+.code-card > .cc-head {
+  display: flex; align-items: center; gap: 9px;
+  padding: 9px var(--s4);
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+  font: 600 12.5px var(--f-sans); color: var(--ink-2);
+}
+.cc-head .cc-badge {
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .1em;
+  color: var(--accent); background: var(--accent-soft);
+  padding: 2px 7px; border-radius: 4px; flex: none;
+}
+.cc-body { padding: var(--s4); }
+.cc-body > pre { margin: 0; }
+
+.code-purpose { font-size: var(--t-sm); color: var(--ink-3); margin: 0 0 var(--s3); }
+
+.cc-head .cc-titles { min-width: 0; }
+.cc-head .cc-titles h3 {
+  margin: 0 !important;
+  font: 600 12.5px var(--f-sans) !important;
+  color: var(--ink-2);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.cc-head .cc-titles h3[hidden] { display: none !important; }
+
+/* ---------------------------- 演示面板 ---------------------------- */
+.demo-frame {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-1);
+}
+.demo-bar {
+  display: flex; align-items: center; gap: 9px;
+  padding: 8px var(--s4);
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-mono); font-size: 11px; color: var(--ink-3);
+  letter-spacing: .04em;
+}
+.demo-bar .live {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.demo-bar .df-name { margin-left: auto; color: var(--ink-4); }
+.demo-mount {
+  padding: var(--s4);
+  min-height: 80px;
+  overflow-x: auto;
+}
+/* 演示里的 svg 不要被拉变形 */
+.demo-mount svg { max-width: 100%; height: auto; }
+
+.demo-hint {
+  margin: 0 0 var(--s3);
+  font-size: var(--t-sm); color: var(--ink-3);
+  padding-left: var(--s3); border-left: 2px solid var(--line-2);
+}
+
+/* ---------------------------- 翻页 ---------------------------- */
+.pager {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3);
+  margin-top: var(--s7); padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+}
+.pager a, .pager span {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  color: var(--ink-2); background: var(--bg-1);
+  transition: border-color .16s, color .16s, transform .16s;
+}
+.pager a:hover { border-color: var(--accent); color: var(--ink); text-decoration: none; transform: translateY(-1px); }
+.pager .pg-dir { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .12em; color: var(--ink-4); text-transform: uppercase; }
+.pager .pg-title { font-size: var(--t-md); font-weight: 600; }
+.pager .pg-next { text-align: right; align-items: flex-end; }
+.pager .pg-empty { opacity: .45; border-style: dashed; }
+
+@media (max-width: 720px) {
+  .chapter > h2 { font-size: var(--t-xl); }
+  .chapter-subtitle, .sec-meta { padding-left: 0; }
+  .tabs { position: static; width: 100%; }
+  .tab-btn { flex: 1; justify-content: center; padding: 9px 8px; }
+  .pager { grid-template-columns: 1fr; }
+  .blk, .cc-body, .demo-mount { padding-left: var(--s4); padding-right: var(--s4); }
+}

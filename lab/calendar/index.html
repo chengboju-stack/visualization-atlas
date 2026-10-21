@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>日历热图：把一年折叠成一张纸 · 可视化导论</title>
+<meta name="description" content="van Wijk 的日历热图把 365 天排成 7×53 的格子，颜色编码数值。它比折线好在"哪一天"一找一个准，差在趋势不明显——所以常有下方那条年趋势线。框选一段试试联动。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1319'/%3E%3Cpath d='M7 24h18M7 24V8' stroke='%23e0574a' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M11 19l5-8 5 5 4-7' stroke='%23e0574a' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/lab.css">
+<link rel="stylesheet" href="../../assets/lab-kit.css">
+</head>
+<body class="page-lab">
+<header class="topbar course-topbar">
+  <a class="brand" href="../../">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V13M9.3 20V5M14.7 20v-6M20 20V9"/></svg></span>
+    <span class="brand-text"><b><span data-lang="zh-CN">可视化导论</span><span data-lang="en-US" hidden>Introduction to Visualization</span></b><i>Visualization Atlas</i></span>
+  </a>
+  <div class="top-actions"></div>
+</header>
+
+<main class="lab-wrap">
+  <a class="lab-back" href="../../lesson-05/#ch-5-3">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    <span data-lang="zh-CN">回到 5.3 日历热图</span><span data-lang="en-US" hidden>Back to 5.3 calendar heatmap</span>
+  </a>
+
+  <h1 class="lab-title">
+    <span data-lang="zh-CN">日历热图：把一年折叠成一张纸</span>
+    <span data-lang="en-US" hidden>Calendar heatmap: a year on one sheet</span>
+  </h1>
+  <p class="lab-lead">
+    <span data-lang="zh-CN">van Wijk 的日历热图把 365 天排成 7×53 的格子，颜色编码数值。它比折线好在"哪一天"一找一个准，差在趋势不明显——所以常有下方那条年趋势线。框选一段试试联动。</span>
+    <span data-lang="en-US" hidden>The van Wijk calendar heatmap lays 365 days on a 7×53 grid, colour-encoding values. It beats a line chart at locating a specific day and loses at showing trend — hence the yearly trend line beneath. Brush a range to see them linked.</span>
+  </p>
+
+  <section class="console-grid">
+    <div class="console-stage">
+      <svg id="cal" viewBox="0 0 640 220"></svg>
+      <svg id="trend" viewBox="0 0 640 110"></svg>
+    </div>
+    <div class="console-panel">
+      <h4><span data-lang="zh-CN">年份</span><span data-lang="en-US" hidden>Year</span></h4>
+      <div class="ctl">
+        <select id="year"><option value="2024">2024</option><option value="2025">2025</option></select>
+      </div>
+      <div class="readout">
+        <div><span data-lang="zh-CN">选中区间</span><span data-lang="en-US" hidden>selection</span><b id="sel">—</b></div>
+        <div><span data-lang="zh-CN">均值</span><span data-lang="en-US" hidden>mean</span><b id="mean">—</b></div>
+      </div>
+      <p class="lab-note" style="margin:0;font-size:12px">
+        <span data-lang="zh-CN">在上方日历里按住拖动即可框选；下方折线会同步高亮同一时间段（brushing &amp; linking）。</span>
+        <span data-lang="en-US" hidden>Drag across the calendar to brush; the trend line below highlights the same window (brushing & linking).</span>
+      </p>
+    </div>
+  </section>
+  <div class="lab-foot">
+    <a href="../"><span data-lang="zh-CN">全部实验台</span><span data-lang="en-US" hidden>All labs</span></a>
+    <a href="../../lesson-05/#ch-5-3"><span data-lang="zh-CN">回到 5.3 日历热图</span><span data-lang="en-US" hidden>Back to 5.3 calendar heatmap</span></a>
+  </div>
+</main>
+
+<script src="../../assets/anim.js"></script>
+<script src="../../assets/lab-kit.js"></script>
+<script src="../../assets/lab-calendar.js"></script>
+<script type="module" src="../../i18n.js"></script>
+</body>
+</html>

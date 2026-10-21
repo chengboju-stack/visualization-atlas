@@ -1,0 +1,247 @@
+/* ==========================================================================
+   demo.css · 演示面板内部样式
+   43 个演示原先各自依赖所在章节的 styles.css。重构后不再加载那 5 份旧样式，
+   这里用一套统一的、跟随主题的样式覆盖演示内部会出现的元素与类名，
+   保证任何 demo 都不会出现「无样式表格 / 裸按钮」。
+   ========================================================================== */
+
+/* ---------------------------- 表单控件 ---------------------------- */
+.demo-mount button,
+.demo-mount .demo-btn {
+  appearance: none;
+  font: 600 12.5px var(--f-sans);
+  color: var(--ink);
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  border-radius: 7px;
+  padding: 6px 13px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s, transform .12s;
+}
+.demo-mount button:hover,
+.demo-mount .demo-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+}
+.demo-mount button:active { transform: translateY(1px); }
+.demo-mount button.active,
+.demo-mount .demo-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.demo-mount button:disabled { opacity: .45; cursor: not-allowed; }
+
+.demo-mount input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  height: 4px; border-radius: 2px;
+  background: var(--line-2);
+  outline: none;
+  vertical-align: middle;
+  max-width: 220px;
+}
+.demo-mount input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-1);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: pointer;
+}
+.demo-mount input[type="checkbox"] { accent-color: var(--accent); }
+
+.demo-mount select,
+.demo-mount input[type="text"],
+.demo-mount input[type="number"],
+.demo-mount textarea {
+  font: 13px var(--f-mono);
+  color: var(--ink);
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  padding: 5px 8px;
+}
+.demo-mount select:focus,
+.demo-mount input:focus,
+.demo-mount button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.demo-mount label {
+  font-size: 12.5px; color: var(--ink-3);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+
+/* 控制条 */
+.demo-mount .controls,
+.demo-mount .demo-control,
+.demo-mount .ms-threshold-control,
+.demo-mount .slope-control,
+.demo-mount .color-picker-row,
+.demo-mount .philosophy-inputs {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
+  padding: 10px 12px;
+  margin: 0 0 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 12.5px; color: var(--ink-3);
+}
+
+/* ---------------------------- 表格 ---------------------------- */
+.demo-mount table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  margin: 10px 0;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.demo-mount th,
+.demo-mount td {
+  padding: 7px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  vertical-align: top;
+}
+.demo-mount thead th {
+  background: var(--bg-2);
+  color: var(--ink);
+  font-weight: 640;
+  font-size: 11.5px;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+.demo-mount tbody tr:last-child td { border-bottom: 0; }
+.demo-mount tbody tr:hover td { background: var(--bg-2); }
+
+/* ---------------------------- 日志 / 控制台 ---------------------------- */
+.demo-mount .console,
+.demo-mount pre.log,
+.demo-mount .demo-detail,
+.demo-mount .flow-detail {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  line-height: 1.75;
+  color: var(--ink-2);
+  background: var(--bg-code);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  max-height: 320px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.demo-mount .console:empty { display: none; }
+
+/* 演示里的小标题与说明 */
+.demo-mount h4,
+.demo-mount .demo-sub {
+  margin: 12px 0 6px;
+  font-size: 12.5px;
+  font-weight: 640;
+  color: var(--ink);
+  letter-spacing: .02em;
+}
+.demo-mount p { margin: 8px 0; font-size: 12.5px; color: var(--ink-3); line-height: 1.7; max-width: none; }
+.demo-mount .demo-error { color: var(--accent-ink); font-size: 12.5px; }
+.demo-mount .visual-hint { font-size: 11.5px; color: var(--ink-4); }
+.demo-mount .example { font-size: 12.5px; color: var(--ink-3); }
+.demo-mount .note {
+  background: var(--gold-soft);
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  border-radius: 8px; padding: 9px 12px; margin: 10px 0;
+  font-size: 12.5px; color: var(--ink-2);
+}
+
+/* 图例 */
+.demo-mount .demo-legend,
+.demo-mount .legend-strip,
+.demo-mount .cal-legend-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  margin: 8px 0;
+  font-size: 12px; color: var(--ink-3);
+}
+.demo-mount .demo-legend i {
+  display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px;
+}
+
+/* ---------------------------- 色卡 / 色板 ---------------------------- */
+.demo-mount .color-space-cards,
+.demo-mount .color-grid,
+.demo-mount .harmony-grid,
+.demo-mount .palette-matrix,
+.demo-mount .philosophy-row,
+.demo-mount .cvd-row,
+.demo-mount .attr-grid {
+  display: grid; gap: 10px;
+  margin: 10px 0;
+}
+.demo-mount .color-space-cards { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.demo-mount .color-grid { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
+.demo-mount .palette-matrix { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.demo-mount .attr-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+
+.demo-mount .color-space-card,
+.demo-mount .attr-detail-card,
+.demo-mount .philosophy-paper-card,
+.demo-mount .quiz-card-label {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.demo-mount .color-space-card b { display: block; color: var(--ink); margin-bottom: 4px; font-size: 12.5px; }
+
+.demo-mount .color-cell,
+.demo-mount .cvd-cell,
+.demo-mount .harmony-swatch {
+  border-radius: 8px;
+  min-height: 56px;
+  display: flex; align-items: flex-end;
+  padding: 6px;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  border: 1px solid var(--line);
+  transition: transform .14s, box-shadow .14s;
+}
+.demo-mount .color-cell:hover,
+.demo-mount .cvd-cell:hover,
+.demo-mount .harmony-swatch:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.demo-mount .colormap-strip {
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  margin: 8px 0;
+}
+
+/* 决策表 / 测验 */
+.demo-mount .decision-table td:first-child { font-weight: 600; color: var(--ink); }
+.demo-mount .quiz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+.demo-mount .quiz-result { margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--accent-2-ink); }
+
+/* 树形列表 */
+.demo-mount .tree-list { font-size: 12.5px; }
+.demo-mount .tree-list ul { list-style: none; padding-left: 1.1em; margin: 2px 0; }
+.demo-mount .tree-list li { margin: 3px 0; color: var(--ink-2); }
+.demo-mount .tree-list li[data-collapsed="true"] > ul { display: none; }
+
+/* SVG 图示统一底色与描边，避免在深色底上"看不见线" */
+.demo-mount svg text { fill: var(--ink-2); }
+.demo-mount svg .axis path,
+.demo-mount svg .axis line,
+.demo-mount svg line { stroke: var(--line-2); }
+.demo-mount svg .domain { stroke: var(--line-2); }

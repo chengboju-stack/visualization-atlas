@@ -1,0 +1,165 @@
+/* ==========================================================================
+   lesson.css · 老师原有内容的排版（正文、表格、代码高亮、强调）
+   目标：内容一个字不改，只把「读起来舒服」这件事做对。
+   ========================================================================== */
+
+.chapter h3 {
+  margin: var(--s5) 0 var(--s2);
+  font-size: var(--t-lg); font-weight: 650; letter-spacing: -.01em;
+  color: var(--ink);
+}
+.chapter h4 { margin: var(--s4) 0 var(--s2); font-size: var(--t-md); color: var(--ink-2); }
+
+.chapter p {
+  margin: 0 0 var(--s4);
+  color: var(--ink-2);
+  max-width: 72ch;
+}
+.chapter p:last-child { margin-bottom: 0; }
+
+.chapter strong { color: var(--ink); font-weight: 640; }
+.chapter em { color: var(--accent-2-ink); font-style: normal; }
+
+.chapter ul, .chapter ol {
+  margin: 0 0 var(--s4); padding-left: 1.4em;
+  color: var(--ink-2);
+}
+.chapter li { margin: 6px 0; }
+.chapter li::marker { color: var(--ink-4); }
+
+/* 行内代码 */
+.chapter :not(pre) > code {
+  font-family: var(--f-mono); font-size: .87em;
+  padding: 1.5px 5px; border-radius: 4px;
+  background: var(--bg-3); color: var(--accent-2-ink);
+  border: 1px solid var(--line);
+  word-break: break-word;
+}
+
+/* ---------------------------- 代码块 ---------------------------- */
+/* 代码块始终用深色：像仪器读数，且深浅色主题下表现一致 */
+pre {
+  margin: 0 0 var(--s4);
+  padding: var(--s4);
+  background: var(--bg-code);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow-x: auto;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  line-height: 1.72;
+  color: #d7e2ee;
+  tab-size: 2;
+}
+pre code { font: inherit; color: inherit; background: none; border: 0; padding: 0; }
+
+/* 语法着色：沿用原站语义（关键字/函数/字符串/数字/注释/类名） */
+pre .cmt { color: #7d8fa3; font-style: italic; }
+pre .kw  { color: #f093b8; }
+pre .fn  { color: #6fb3ea; }
+pre .str { color: #97d9a3; }
+pre .num { color: #f0c05e; }
+pre .op  { color: #e79a63; }
+pre .cls { color: #f093b8; }
+pre .star { color: var(--gold); font-weight: 700; }
+
+/* 代码块内的强调行（原站用 ⭐ 标注，现已统一为 ◆） */
+pre .star + * { }
+
+/* ---------------------------- 关键点 ---------------------------- */
+.key-point {
+  position: relative;
+  margin: var(--s4) 0;
+  padding: var(--s3) var(--s4) var(--s3) var(--s5);
+  border-radius: var(--r-md);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  font-size: var(--t-md);
+  line-height: 1.78;
+  color: var(--ink-2);
+}
+.key-point::before {
+  content: '';
+  position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.key-point strong { color: var(--ink); }
+.key-point code { background: var(--bg-3); }
+
+/* ---------------------------- 理论表格 ---------------------------- */
+.theory-table {
+  width: 100%;
+  border-collapse: separate; border-spacing: 0;
+  margin: var(--s4) 0;
+  font-size: var(--t-sm);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--bg-1);
+}
+.theory-table th, .theory-table td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+.theory-table thead th {
+  background: var(--bg-2);
+  color: var(--ink);
+  font-weight: 650;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  border-bottom: 1px solid var(--line-2);
+}
+.theory-table tbody tr:last-child td { border-bottom: 0; }
+.theory-table tbody tr:hover td { background: var(--bg-2); }
+.theory-table code { white-space: nowrap; }
+
+/* 表格横向滚动容器（内容多时） */
+.chapter .table-scroll { overflow-x: auto; }
+
+/* ---------------------------- 引用 / 提示 ---------------------------- */
+.chapter blockquote {
+  margin: var(--s4) 0;
+  padding: var(--s3) var(--s4);
+  border-left: 3px solid var(--line-2);
+  background: var(--bg-2);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  color: var(--ink-2);
+}
+.chapter blockquote p:last-child { margin: 0; }
+
+.note {
+  margin: var(--s4) 0;
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-md);
+  background: var(--gold-soft);
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+}
+
+/* 原站的 .demo-hint 已由 components.css 处理 */
+
+/* ---------------------------- 图片 ---------------------------- */
+.chapter img {
+  display: block;
+  margin: var(--s4) auto;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: #fff;
+  max-width: 100%;
+  height: auto;
+}
+.chapter figure { margin: var(--s4) 0; }
+.chapter figcaption {
+  margin-top: 6px; text-align: center;
+  font-size: var(--t-xs); color: var(--ink-4);
+}
+
+/* ---------------------------- 双语节点的显示规则 ---------------------------- */
+/* i18n.js 会按 data-lang 自动 hidden 切换；这里只保证隐藏时彻底不占位 */
+[data-lang][hidden] { display: none !important; }

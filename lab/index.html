@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>概念实验室 · 可视化导论</title>
+<meta name="description" content="九个可动手的实验台：Data-Join、Marching Squares、色阶、日历热图、色域、螺旋、DIKW、通道排序、色盲模拟。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1319'/%3E%3Cpath d='M10 8h12M12 8v6l-4 9a2 2 0 0 0 1.8 3h12.4a2 2 0 0 0 1.8-3l-4-9V8' stroke='%23e0574a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" href="../assets/home.css">
+<link rel="stylesheet" href="../assets/lab.css">
+</head>
+<body class="page-home">
+<header class="topbar course-topbar">
+  <a class="brand" href="../">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V13M9.3 20V5M14.7 20v-6M20 20V9"/></svg></span>
+    <span class="brand-text"><b><span data-lang="zh-CN">可视化导论</span><span data-lang="en-US" hidden>Introduction to Visualization</span></b><i>Visualization Atlas</i></span>
+  </a>
+  <div class="top-actions">
+    <button class="icon-btn" id="theme-btn" type="button" aria-label="切换深浅色">
+      <svg class="ic-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="lab-wrap">
+  <a class="lab-back" href="../">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    <span data-lang="zh-CN">返回课程门户</span><span data-lang="en-US" hidden>Back to the portal</span>
+  </a>
+
+  <h1 class="lab-title"><span data-lang="zh-CN">九个实验台</span><span data-lang="en-US" hidden>Nine labs</span></h1>
+  <p class="lab-lead">
+    <span data-lang="zh-CN">每个实验台只讲一件事，改一个参数就能看到结论。按章排列：先数据与流程，再颜色，再图形，最后时间。</span>
+    <span data-lang="en-US" hidden>Each lab makes exactly one point; change one parameter and see the conclusion. Ordered by chapter: data and pipeline, then colour, charts, and time.</span>
+  </p>
+
+  <div class="sec-head" style="margin-top:var(--s6)">
+    <p class="sec-kicker">CHAPTER 01 · 02</p>
+    <h2><span data-lang="zh-CN">数据与流程</span><span data-lang="en-US" hidden>Data & pipeline</span></h2>
+  </div>
+  <div class="lab-cards">
+    <a class="lab-card" href="datajoin/">
+      <span class="lc-tag">01</span>
+      <h3><span data-lang="zh-CN">Data-Join 三态</span><span data-lang="en-US" hidden>Data-join states</span></h3>
+      <p><span data-lang="zh-CN">改数组，看 enter / update / exit 怎么在同一个图里发生；切 key 函数对比对象恒定。</span><span data-lang="en-US" hidden>Edit the array and watch enter / update / exit happen in one chart; switch the key function to see object constancy.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+    <a class="lab-card" href="dikw/">
+      <span class="lc-tag">02</span>
+      <h3><span data-lang="zh-CN">DIKW 四层</span><span data-lang="en-US" hidden>The DIKW ladder</span></h3>
+      <p><span data-lang="zh-CN">同一份数据在四个层级上说的是不同的话；滚动看每一层丢掉了什么。</span><span data-lang="en-US" hidden>The same data says different things at four levels; scroll to see what each level discards.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+    <a class="lab-card" href="channels/">
+      <span class="lc-tag">03</span>
+      <h3><span data-lang="zh-CN">视觉通道排序</span><span data-lang="en-US" hidden>Channel ranking</span></h3>
+      <p><span data-lang="zh-CN">Mackinlay 1986 的感知精度排序；换任务，看哪些通道直接失效。</span><span data-lang="en-US" hidden>Mackinlay 1986 accuracy ranking; change the task and watch channels drop out.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+    <a class="lab-card" href="marching/">
+      <span class="lc-tag">04</span>
+      <h3><span data-lang="zh-CN">Marching Squares</span><span data-lang="en-US" hidden>Marching Squares</span></h3>
+      <p><span data-lang="zh-CN">逐格判定 16 种情形，一格一格走出等值线；可调阈值与进度。</span><span data-lang="en-US" hidden>Sixteen cases per cell, one cell at a time; adjust threshold and progress.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+  </div>
+
+  <div class="sec-head" style="margin-top:var(--s6)">
+    <p class="sec-kicker">CHAPTER 03</p>
+    <h2><span data-lang="zh-CN">颜色</span><span data-lang="en-US" hidden>Colour</span></h2>
+  </div>
+  <div class="lab-cards">
+    <a class="lab-card" href="colormap/">
+      <span class="lc-tag">05</span>
+      <h3><span data-lang="zh-CN">色阶三族</span><span data-lang="en-US" hidden>Three colormap families</span></h3>
+      <p><span data-lang="zh-CN">顺序 / 发散 / 定性 × 三种数据语义，错配时图形会立刻"说错话"。</span><span data-lang="en-US" hidden>Sequential / diverging / qualitative against three data semantics — mismatches start lying immediately.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+    <a class="lab-card" href="cvd/">
+      <span class="lc-tag">06</span>
+      <h3><span data-lang="zh-CN">色盲模拟器</span><span data-lang="en-US" hidden>Colour-blind simulator</span></h3>
+      <p><span data-lang="zh-CN">Machado 2009 模型；看同一套配色与图形在三种色觉缺陷下怎么塌掉。</span><span data-lang="en-US" hidden>Machado 2009; watch a palette and a chart collapse under three deficiencies.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+    <a class="lab-card" href="gamut/">
+      <span class="lc-tag">07</span>
+      <h3><span data-lang="zh-CN">CIELAB 色域</span><span data-lang="en-US" hidden>CIELAB gamut</span></h3>
+      <p><span data-lang="zh-CN">真实色彩换算，扫描 a*b* 平面把 sRGB 能显示的边界画出来。</span><span data-lang="en-US" hidden>Real colour maths: scan the a*b* plane to reveal the sRGB boundary.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+  </div>
+
+  <div class="sec-head" style="margin-top:var(--s6)">
+    <p class="sec-kicker">CHAPTER 04 · 05</p>
+    <h2><span data-lang="zh-CN">图形与时间</span><span data-lang="en-US" hidden>Charts & time</span></h2>
+  </div>
+  <div class="lab-cards">
+    <a class="lab-card" href="calendar/">
+      <span class="lc-tag">08</span>
+      <h3><span data-lang="zh-CN">日历热图</span><span data-lang="en-US" hidden>Calendar heatmap</span></h3>
+      <p><span data-lang="zh-CN">365 天折叠成 7×53；框选一段，下方趋势线同步高亮。</span><span data-lang="en-US" hidden>365 days on a 7×53 grid; brush a window and the trend line below follows.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+    <a class="lab-card" href="spiral/">
+      <span class="lc-tag">09</span>
+      <h3><span data-lang="zh-CN">阿基米德螺旋</span><span data-lang="en-US" hidden>Archimedean spiral</span></h3>
+      <p><span data-lang="zh-CN">把一条平铺的时间轴折叠成螺旋，看周期怎么在极坐标里显形。</span><span data-lang="en-US" hidden>Fold a flat timeline into a spiral and watch periodicity appear in polar space.</span></p>
+      <span class="lc-go"><span data-lang="zh-CN">打开</span><span data-lang="en-US" hidden>Open</span> →</span>
+    </a>
+  </div>
+</main>
+
+<script src="../assets/home.js"></script>
+<script src="../assets/anim.js"></script>
+<script type="module" src="../i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+/* ==========================================================================
+   tokens.css · 设计 token
+   一套值定义两次（深/浅），其余所有样式只引用变量，不做硬编码颜色。
+
+   取色依据：
+   - 数据色板直接用 Okabe–Ito 8 色（对红绿/蓝黄色盲都安全，见 research/可视化参考.md）
+   - 界面强调色取朱砂（--accent）与青灰（--accent-2），与数据色板区分开：
+     数据用彩，界面用「墨 + 朱」，避免图表和控件抢颜色
+   - 正文对比度在深色下 ≥ 7:1，浅色下 ≥ 8:1
+   ========================================================================== */
+
+:root {
+  /* ---- 字体 ---- */
+  --f-sans: "Inter", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", "Cascadia Mono", "Consolas", "SF Mono", ui-monospace, monospace;
+
+  /* ---- 字号（中文阅读取 17px，行高偏松）---- */
+  --t-xs: 12px;
+  --t-sm: 13.5px;
+  --t-md: 15.5px;
+  --t-base: 17px;
+  --t-lg: 19px;
+  --t-xl: 23px;
+  --t-2xl: 30px;
+  --t-3xl: 40px;
+  --lh-tight: 1.3;
+  --lh-base: 1.82;
+
+  /* ---- 间距节奏 ---- */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+
+  /* ---- 圆角与阴影 ---- */
+  --r-sm: 4px; --r-md: 8px; --r-lg: 14px; --r-xl: 20px;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .18);
+  --shadow-2: 0 6px 24px rgba(0, 0, 0, .22);
+  --shadow-3: 0 18px 48px rgba(0, 0, 0, .3);
+
+  /* ---- 布局 ---- */
+  --rail-w: 290px;
+  --content-w: 780px;
+  --wide-w: 1060px;
+  --topbar-h: 58px;
+
+  /* ---- 数据色板：Okabe–Ito（8 色）---- */
+  --d1: #E69F00;  /* 橙 */
+  --d2: #56B4E9;  /* 天蓝 */
+  --d3: #009E73;  /* 绿 */
+  --d4: #F0E442;  /* 黄 */
+  --d5: #0072B2;  /* 蓝 */
+  --d6: #D55E00;  /* 朱红 */
+  --d7: #CC79A7;  /* 粉紫 */
+  --d8: #999999;  /* 灰 */
+}
+
+/* ---------------------------- 深色（默认） ---------------------------- */
+:root, [data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1118;
+  --bg-1: #0e1620;
+  --bg-2: #131d29;
+  --bg-3: #1a2634;
+  --bg-code: #080d13;
+  --line: #1f2c3a;
+  --line-2: #2b3c4e;
+  --ink: #e9eff6;
+  --ink-2: #b4c3d2;
+  --ink-3: #8395a8;
+  --ink-4: #5d7185;
+  --accent: #e0574a;
+  --accent-ink: #ff8b7d;
+  --accent-soft: rgba(224, 87, 74, .12);
+  --accent-2: #5aa8a8;
+  --accent-2-ink: #7fd0cf;
+  --accent-2-soft: rgba(90, 168, 168, .12);
+  --gold: #d9a441;
+  --gold-soft: rgba(217, 164, 65, .12);
+  --grid-dot: rgba(255, 255, 255, .045);
+  --sel: rgba(224, 87, 74, .22);
+}
+
+/* ---------------------------- 浅色 ---------------------------- */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #faf8f4;
+  --bg-1: #ffffff;
+  --bg-2: #f4f1ea;
+  --bg-3: #ece7dc;
+  --bg-code: #101820;
+  --line: #e3dcd1;
+  --line-2: #cfc5b6;
+  --ink: #141d26;
+  --ink-2: #414e5c;
+  --ink-3: #68757f;
+  --ink-4: #8d989f;
+  --accent: #c4402c;
+  --accent-ink: #a8341f;
+  --accent-soft: rgba(196, 64, 44, .09);
+  --accent-2: #2b7a7a;
+  --accent-2-ink: #226363;
+  --accent-2-soft: rgba(43, 122, 122, .09);
+  --gold: #9a6f1c;
+  --gold-soft: rgba(154, 111, 28, .1);
+  --grid-dot: rgba(20, 29, 38, .075);
+  --sel: rgba(196, 64, 44, .18);
+  --shadow-1: 0 1px 2px rgba(20, 29, 38, .07);
+  --shadow-2: 0 6px 22px rgba(20, 29, 38, .1);
+  --shadow-3: 0 18px 44px rgba(20, 29, 38, .13);
+}
+
+/* ---------------------------- 打印 ---------------------------- */
+@media print {
+  :root { --bg: #fff; --bg-1: #fff; --bg-2: #fff; --bg-3: #f2f2f2; --ink: #000; --ink-2: #222; --ink-3: #444; }
+  .topbar, .rail, .readbar, .pager, .tab-btn, .skip { display: none !important; }
+  .lesson-shell { display: block; }
+  .chapter, .tab-panel { display: block !important; }
+  .tab-panels { display: block; }
+  * { box-shadow: none !important; }
+}

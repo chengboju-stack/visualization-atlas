@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>色盲模拟实验 · 可视化导论</title>
+<meta name="description" content="用 Machado 2009 模型模拟红色盲、绿色盲、蓝色盲，检查配色与图形在色觉缺陷下是否还成立。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1319'/%3E%3Ccircle cx='13' cy='15' r='7' fill='%23e0574a'/%3E%3Ccircle cx='21' cy='18' r='7' fill='%2356B4E9' opacity='.75'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/lab.css">
+</head>
+<body class="page-lab">
+<header class="topbar course-topbar">
+  <a class="brand" href="../../">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V13M9.3 20V5M14.7 20v-6M20 20V9"/></svg>
+    </span>
+    <span class="brand-text"><b><span data-lang="zh-CN">可视化导论</span><span data-lang="en-US" hidden>Introduction to Visualization</span></b><i>Visualization Atlas</i></span>
+  </a>
+  <div class="top-actions"></div>
+</header>
+
+<main class="lab-wrap">
+  <a class="lab-back" href="../../lesson-03/#ch-3-8">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    <span data-lang="zh-CN">回到 3.8 CVD 论文图测</span><span data-lang="en-US" hidden>Back to 3.8 CVD testing</span>
+  </a>
+
+  <h1 class="lab-title">
+    <span data-lang="zh-CN">这张图，色盲同学看到的是什么？</span>
+    <span data-lang="en-US" hidden>What does a colour-blind reader see?</span>
+  </h1>
+  <p class="lab-lead">
+    <span data-lang="zh-CN">约 8% 的男性有某种色觉缺陷。下面用 <strong>Machado (2009)</strong> 的生理模型做模拟——和 Chrome 开发者工具里的「模拟视觉缺陷」用的是同一套矩阵。切换缺陷类型，看同一套配色怎么塌掉。</span>
+    <span data-lang="en-US" hidden>About 8% of men have some form of colour vision deficiency. The simulation below uses the <strong>Machado (2009)</strong> physiological model — the same matrices Chrome DevTools uses. Switch the deficiency and watch the palette collapse.</span>
+  </p>
+
+  <section class="lab-panel">
+    <div class="lab-bar">
+      <h2><span data-lang="zh-CN">模拟</span><span data-lang="en-US" hidden>Simulate</span></h2>
+      <div class="spacer"></div>
+      <div class="seg" id="cvd-seg"></div>
+    </div>
+
+    <div class="cvd-pair" style="margin-bottom:var(--s4)">
+      <figure>
+        <figcaption><span data-lang="zh-CN">当前配色（上：正常视觉）</span><span data-lang="en-US" hidden>Swatches (top: normal vision)</span></figcaption>
+        <div class="cvd-grid" id="cvd-normal"></div>
+      </figure>
+      <figure>
+        <figcaption id="cvd-sim-cap"><span data-lang="zh-CN">模拟结果</span><span data-lang="en-US" hidden>Simulated</span></figcaption>
+        <div class="cvd-grid" id="cvd-sim"></div>
+      </figure>
+    </div>
+
+    <div class="cvd-pair">
+      <figure>
+        <figcaption><span data-lang="zh-CN">分组柱：五组数值（上一行正常，下一行模拟）</span><span data-lang="en-US" hidden>Bars: top normal, bottom simulated</span></figcaption>
+        <svg class="cvd-line" id="bars-normal" viewBox="0 0 320 92" preserveAspectRatio="none"></svg>
+        <svg class="cvd-line" id="bars-sim" viewBox="0 0 320 92" preserveAspectRatio="none" style="margin-top:8px"></svg>
+      </figure>
+      <figure>
+        <figcaption><span data-lang="zh-CN">折线：三条序列（上正常 / 下模拟）</span><span data-lang="en-US" hidden>Three series: top normal, bottom simulated</span></figcaption>
+        <svg class="cvd-line" id="line-normal" viewBox="0 0 320 92" preserveAspectRatio="none"></svg>
+        <svg class="cvd-line" id="line-sim" viewBox="0 0 320 92" preserveAspectRatio="none" style="margin-top:8px"></svg>
+      </figure>
+    </div>
+
+    <p class="lab-note" id="cvd-note"></p>
+  </section>
+
+  <section class="lab-panel">
+    <div class="lab-bar">
+      <h2><span data-lang="zh-CN">换成色盲友好的色板</span><span data-lang="en-US" hidden>A CVD-safe palette</span></h2>
+    </div>
+    <p class="lab-note" style="margin-top:0">
+      <span data-lang="zh-CN">Okabe–Ito 八色：横跨明度与色相两个维度，在三种色盲模拟下都还能区分。本网站的数据色板用的就是它。</span>
+      <span data-lang="en-US" hidden>The Okabe–Ito eight-colour set: varied in both lightness and hue, still separable under all three simulations. This site's data palette is built on it.</span>
+    </p>
+    <div class="cvd-grid" id="cvd-okabe"></div>
+    <p class="lab-note">
+      <span data-lang="zh-CN">判断标准不是「看起来不一样」，而是<strong>任意两条颜色在模拟后仍然可分</strong>——所以还要配合直接标注、不同形状或线型，不能只靠颜色。</span>
+      <span data-lang="en-US" hidden>The test is not "they look different" but <strong>any two colours stay separable after simulation</strong> — which is why direct labels, shapes and line styles must back up colour.</span>
+    </p>
+    <div class="lab-foot">
+      <a href="../../lesson-03/">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span data-lang="zh-CN">读第 3 章：色彩专题</span><span data-lang="en-US" hidden>Read chapter 3</span>
+      </a>
+      <a href="../channels/">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span data-lang="zh-CN">另一个实验：视觉通道排序</span><span data-lang="en-US" hidden>Next lab: channel ranking</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<script src="../../assets/lab-cvd.js"></script>
+<script src="../../assets/anim.js"></script>
+<script type="module" src="../../i18n.js"></script>
+</body>
+</html>

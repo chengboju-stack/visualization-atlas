@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>把一条时间轴卷成螺旋 · 可视化导论</title>
+<meta name="description" content="阿基米德螺旋 r = a + bθ 让「时间」同时沿角度和半径推进。拖动折叠滑块，看一条平铺的 365 天如何卷成一个周期结构。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1319'/%3E%3Cpath d='M7 24h18M7 24V8' stroke='%23e0574a' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M11 19l5-8 5 5 4-7' stroke='%23e0574a' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/lab.css">
+<link rel="stylesheet" href="../../assets/lab-kit.css">
+</head>
+<body class="page-lab">
+<header class="topbar course-topbar">
+  <a class="brand" href="../../">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V13M9.3 20V5M14.7 20v-6M20 20V9"/></svg></span>
+    <span class="brand-text"><b><span data-lang="zh-CN">可视化导论</span><span data-lang="en-US" hidden>Introduction to Visualization</span></b><i>Visualization Atlas</i></span>
+  </a>
+  <div class="top-actions"></div>
+</header>
+
+<main class="lab-wrap">
+  <a class="lab-back" href="../../lesson-05/#ch-5-4">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    <span data-lang="zh-CN">回到 5.4 阿基米德螺旋</span><span data-lang="en-US" hidden>Back to 5.4 Archimedean spiral</span>
+  </a>
+
+  <h1 class="lab-title">
+    <span data-lang="zh-CN">把一条时间轴卷成螺旋</span>
+    <span data-lang="en-US" hidden>Rolling a timeline into a spiral</span>
+  </h1>
+  <p class="lab-lead">
+    <span data-lang="zh-CN">阿基米德螺旋 r = a + bθ 让「时间」同时沿角度和半径推进。拖动折叠滑块，看一条平铺的 365 天如何卷成一个周期结构。</span>
+    <span data-lang="en-US" hidden>An Archimedean spiral r = a + bθ advances time along angle and radius at once. Drag the folding slider to watch 365 flat days roll into a periodic structure.</span>
+  </p>
+
+  <section class="console-grid">
+    <div class="console-stage"><svg id="stage" viewBox="0 0 520 400"></svg></div>
+    <div class="console-panel">
+      <h4><span data-lang="zh-CN">折叠</span><span data-lang="en-US" hidden>Folding</span></h4>
+      <div class="ctl">
+        <label for="fold"><span data-lang="zh-CN">折叠程度</span><span data-lang="en-US" hidden>Fold</span><b id="fold-v">0%</b></label>
+        <input id="fold" type="range" min="0" max="100" step="1" value="0">
+      </div>
+      <div class="ctl">
+        <label for="turns"><span data-lang="zh-CN">圈数</span><span data-lang="en-US" hidden>Turns</span><b id="turns-v">6</b></label>
+        <input id="turns" type="range" min="3" max="12" step="1" value="6">
+      </div>
+      <div class="ctl-row">
+        <button class="btn primary" id="play" type="button">播放</button>
+        <button class="btn" id="reset" type="button"><span data-lang="zh-CN">重置</span><span data-lang="en-US" hidden>Reset</span></button>
+      </div>
+      <p class="lab-note" style="margin:0;font-size:12px">
+        <span data-lang="zh-CN">同一个角度位置上，相邻两圈对应相隔一年的同一天——这就是「周期」在极坐标里的样子。</span>
+        <span data-lang="en-US" hidden>Points at the same angle one turn apart are the same day one year later — that is what periodicity looks like in polar coordinates.</span>
+      </p>
+    </div>
+  </section>
+  <div class="lab-foot">
+    <a href="../"><span data-lang="zh-CN">全部实验台</span><span data-lang="en-US" hidden>All labs</span></a>
+    <a href="../../lesson-05/#ch-5-4"><span data-lang="zh-CN">回到 5.4 阿基米德螺旋</span><span data-lang="en-US" hidden>Back to 5.4 Archimedean spiral</span></a>
+  </div>
+</main>
+
+<script src="../../assets/anim.js"></script>
+<script src="../../assets/lab-kit.js"></script>
+<script src="../../assets/lab-spiral.js"></script>
+<script type="module" src="../../i18n.js"></script>
+</body>
+</html>

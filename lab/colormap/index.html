@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>同一份数据，三种色阶 · 可视化导论</title>
+<meta name="description" content="顺序型、发散型、定性型不是审美偏好，而是对应三种数据语义。切换色阶、切换数据类型，看哪一组会立刻"说错话"。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1319'/%3E%3Cpath d='M7 24h18M7 24V8' stroke='%23e0574a' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M11 19l5-8 5 5 4-7' stroke='%23e0574a' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/lab.css">
+<link rel="stylesheet" href="../../assets/lab-kit.css">
+</head>
+<body class="page-lab">
+<header class="topbar course-topbar">
+  <a class="brand" href="../../">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V13M9.3 20V5M14.7 20v-6M20 20V9"/></svg></span>
+    <span class="brand-text"><b><span data-lang="zh-CN">可视化导论</span><span data-lang="en-US" hidden>Introduction to Visualization</span></b><i>Visualization Atlas</i></span>
+  </a>
+  <div class="top-actions"></div>
+</header>
+
+<main class="lab-wrap">
+  <a class="lab-back" href="../../lesson-03/#ch-3-2">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    <span data-lang="zh-CN">回到 3.2 colormap 三类选择</span><span data-lang="en-US" hidden>Back to 3.2 colormap families</span>
+  </a>
+
+  <h1 class="lab-title">
+    <span data-lang="zh-CN">同一份数据，三种色阶</span>
+    <span data-lang="en-US" hidden>Same data, three colormaps</span>
+  </h1>
+  <p class="lab-lead">
+    <span data-lang="zh-CN">顺序型、发散型、定性型不是审美偏好，而是对应三种数据语义。切换色阶、切换数据类型，看哪一组会立刻"说错话"。</span>
+    <span data-lang="en-US" hidden>Sequential, diverging and qualitative encode three different meanings. Switch colormap and data type to see which pairing starts lying.</span>
+  </p>
+
+  <section class="console-grid">
+    <div class="console-stage"><svg id="stage" viewBox="0 0 520 340"></svg></div>
+    <div class="console-panel">
+      <h4><span data-lang="zh-CN">数据语义</span><span data-lang="en-US" hidden>Data semantics</span></h4>
+      <div class="ctl">
+        <select id="semantic">
+          <option value="seq">顺序：0 → 1 单调增长</option>
+          <option value="div">发散：−1 → 0 → 1（有零点）</option>
+          <option value="cat">定性：互不相干的类别</option>
+        </select>
+      </div>
+      <h4><span data-lang="zh-CN">色阶族</span><span data-lang="en-US" hidden>Colormap family</span></h4>
+      <div class="ctl">
+        <div class="seg" id="family" style="width:100%">
+          <button type="button" class="active" data-f="seq" style="flex:1">顺序</button>
+          <button type="button" data-f="div" style="flex:1">发散</button>
+          <button type="button" data-f="cat" style="flex:1">定性</button>
+        </div>
+      </div>
+      <div class="ctl">
+        <label for="cvd2"><span data-lang="zh-CN">色觉模拟</span><span data-lang="en-US" hidden>Vision simulation</span></label>
+        <select id="cvd2">
+          <option value="">正常视觉</option>
+          <option value="protan">红色盲</option>
+          <option value="deutan">绿色盲</option>
+          <option value="tritan">蓝色盲</option>
+        </select>
+      </div>
+      <p class="lab-note" style="margin:0;font-size:12px" id="verdict"></p>
+    </div>
+  </section>
+  <div class="lab-foot">
+    <a href="../"><span data-lang="zh-CN">全部实验台</span><span data-lang="en-US" hidden>All labs</span></a>
+    <a href="../../lesson-03/#ch-3-2"><span data-lang="zh-CN">回到 3.2 colormap 三类选择</span><span data-lang="en-US" hidden>Back to 3.2 colormap families</span></a>
+  </div>
+</main>
+
+<script src="../../assets/anim.js"></script>
+<script src="../../assets/lab-kit.js"></script>
+<script src="../../assets/lab-colormap.js"></script>
+<script type="module" src="../../i18n.js"></script>
+</body>
+</html>

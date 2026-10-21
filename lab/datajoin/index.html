@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data-Join 三态 · 可视化导论</title>
+<meta name="description" content="enter / update / exit：数据数组变化时，元素如何生灭。可交互演示 D3 的通用更新模式。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1319'/%3E%3Crect x='7' y='16' width='4' height='9' fill='%23e0574a'/%3E%3Crect x='14' y='10' width='4' height='15' fill='%23e0574a'/%3E%3Crect x='21' y='19' width='4' height='6' fill='%23e0574a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/lab.css">
+<link rel="stylesheet" href="../../assets/lab-kit.css">
+</head>
+<body class="page-lab">
+<header class="topbar course-topbar">
+  <a class="brand" href="../../">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V13M9.3 20V5M14.7 20v-6M20 20V9"/></svg></span>
+    <span class="brand-text"><b><span data-lang="zh-CN">可视化导论</span><span data-lang="en-US" hidden>Introduction to Visualization</span></b><i>Visualization Atlas</i></span>
+  </a>
+  <div class="top-actions"></div>
+</header>
+
+<main class="lab-wrap">
+  <a class="lab-back" href="../../lesson-01/#ch-1-5">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    <span data-lang="zh-CN">回到 1.5 D3 数据选择器</span><span data-lang="en-US" hidden>Back to 1.5 D3 selections</span>
+  </a>
+
+  <h1 class="lab-title">
+    <span data-lang="zh-CN">数据变了，DOM 怎么跟着变？</span>
+    <span data-lang="en-US" hidden>When data changes, what happens to the DOM?</span>
+  </h1>
+  <p class="lab-lead">
+    <span data-lang="zh-CN">D3 的通用更新模式把新旧数据一比，分成三种情况：<strong>enter</strong>（新来的元素要创建）、<strong>update</strong>（已有的元素要改）、<strong>exit</strong>（多余的旧元素要移除）。往下滚，看这三态怎么在同一个图表里发生。</span>
+    <span data-lang="en-US" hidden>D3's general update pattern diffs old and new data into three states: <strong>enter</strong> (create), <strong>update</strong> (restyle), <strong>exit</strong> (remove). Scroll to watch all three happen in one chart.</span>
+  </p>
+
+  <section class="scrolly" id="scrolly">
+    <ol class="steps">
+      <li class="step" data-step="0">
+        <h3><span class="sn">01</span><span data-lang="zh-CN">初始数据</span><span data-lang="en-US" hidden>Initial data</span></h3>
+        <p><span data-lang="zh-CN">数组 <code>[3, 5, 2]</code>，页面上有三个矩形。</span><span data-lang="en-US" hidden>Array <code>[3, 5, 2]</code> — three rectangles exist.</span></p>
+      </li>
+      <li class="step" data-step="1">
+        <h3><span class="sn">02</span><span data-lang="zh-CN">数据变长了 → enter</span><span data-lang="en-US" hidden>Longer array → enter</span></h3>
+        <p><span data-lang="zh-CN">变成 <code>[3, 5, 2, 7, 4]</code>。前三个是 update，后两个从来没有对应元素——它们从基线"长"出来，这就是 <code>enter</code>。</span><span data-lang="en-US" hidden>Now <code>[3, 5, 2, 7, 4]</code>. The first three are updates; the last two have no element yet — they grow from the baseline. That is <code>enter</code>.</span></p>
+      </li>
+      <li class="step" data-step="2">
+        <h3><span class="sn">03</span><span data-lang="zh-CN">数据变短了 → exit</span><span data-lang="en-US" hidden>Shorter array → exit</span></h3>
+        <p><span data-lang="zh-CN">变成 <code>[4, 6, 3]</code>。剩下的两个元素没有数据认领，它们缩回基线后消失，这就是 <code>exit</code>。注意：<strong>不调用 <code>exit().remove()</code> 它们会永远留在页面上</strong>。</span><span data-lang="en-US" hidden>Now <code>[4, 6, 3]</code>. Two elements are unclaimed: they shrink to the baseline and disappear — that is <code>exit</code>. Note: without <code>exit().remove()</code> they stay on the page forever.</span></p>
+      </li>
+      <li class="step" data-step="3">
+        <h3><span class="sn">04</span><span data-lang="zh-CN">key 函数改变了一切</span><span data-lang="en-US" hidden>The key function changes everything</span></h3>
+        <p><span data-lang="zh-CN">默认按<strong>索引</strong>配对，所以 <code>[3,5,2]→[4,6,3]</code> 是"每个都改值"。如果改成按<strong>值</strong>配对，同一个元素会被认成"原来的 3 变成了 4"，另一个则走 exit——这就是对象恒定（object constancy）。</span><span data-lang="en-US" hidden>By default D3 pairs by <strong>index</strong>, so the change is "every bar updates". Pair by <strong>value</strong> instead and the element that was 3 is recognised as now 4, while another exits — that is object constancy.</span></p>
+      </li>
+    </ol>
+
+    <div class="stage">
+      <div class="stage-cap">
+        <span><b id="cap-mode">enter · update · exit</b></span>
+        <span id="cap-data">[3, 5, 2]</span>
+      </div>
+      <svg id="stage" viewBox="0 0 460 300"></svg>
+      <div class="readout">
+        <div><span>enter</span><b id="n-enter">0</b></div>
+        <div><span>update</span><b id="n-update">3</b></div>
+        <div><span>exit</span><b id="n-exit">0</b></div>
+        <div><span data-lang="zh-CN">元素总数</span><span data-lang="en-US" hidden>DOM nodes</span><b id="n-total">3</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-panel">
+    <div class="lab-bar">
+      <h2><span data-lang="zh-CN">自己试</span><span data-lang="en-US" hidden>Try it</span></h2>
+      <div class="spacer"></div>
+      <div class="seg" id="key-mode">
+        <button type="button" class="active" data-key="index"><span data-lang="zh-CN">按索引配对</span><span data-lang="en-US" hidden>by index</span></button>
+        <button type="button" data-key="value"><span data-lang="zh-CN">按值配对（key）</span><span data-lang="en-US" hidden>by value (key)</span></button>
+      </div>
+    </div>
+    <div class="ctl-row" style="align-items:center;gap:10px;flex-wrap:wrap">
+      <input id="arr-input" type="text" value="3, 5, 2" style="width:220px" aria-label="数据数组">
+      <button class="btn primary" id="arr-apply" type="button"><span data-lang="zh-CN">应用</span><span data-lang="en-US" hidden>Apply</span></button>
+      <button class="btn" id="arr-random" type="button"><span data-lang="zh-CN">随机 2–7 个</span><span data-lang="en-US" hidden>Random 2–7</span></button>
+      <button class="btn" id="arr-reset" type="button"><span data-lang="zh-CN">复位</span><span data-lang="en-US" hidden>Reset</span></button>
+    </div>
+    <p class="lab-note">
+      <span data-lang="zh-CN">播放的是真实的差分逻辑：先算 enter / update / exit 三组，再分别补间。柱子高度 1 单位 = 28px。</span>
+      <span data-lang="en-US" hidden>This runs real diffing: compute enter / update / exit, then tween each group. One unit = 28px.</span>
+    </p>
+  </section>
+
+  <div class="lab-foot">
+    <a href="../channels/"><span data-lang="zh-CN">下一个实验：视觉通道排序</span><span data-lang="en-US" hidden>Next: channel ranking</span></a>
+    <a href="../../lesson-01/#ch-1-5"><span data-lang="zh-CN">读原文 1.5</span><span data-lang="en-US" hidden>Read 1.5</span></a>
+  </div>
+</main>
+
+<script src="../../assets/lab-kit.js"></script>
+<script src="../../assets/lab-datajoin.js"></script>
+<script src="../../assets/anim.js"></script>
+<script type="module" src="../../i18n.js"></script>
+</body>
+</html>
